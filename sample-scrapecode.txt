@@ -1,0 +1,41 @@
+from bs4 import BeautifulSoup, Comment
+import lxml
+from lxml import html
+import requests
+
+
+global driver
+global soup
+spanresults = []
+divresults = []
+atagresults = []
+anyelementresults = []
+
+
+
+
+#add scrapeurl here. line18
+r = requests.get(scrapeurl)
+soup = BeautifulSoup(r.content, 'lxml')
+
+
+
+#add spaninut here. line25
+allspanresults = soup.find_all('span', class_ = spaninput)
+
+for result in allspanresults:
+            spanresults.append(result.getText())
+
+
+#add divinput here. line33
+alldivresults = soup.find_all('div', class_ = divinput)
+
+for result in alldivresults:
+    divresults.append(result.getText())
+
+
+#add anyelement classinput here. line 41
+anyelementresults = soup.find_all("html_element", class_=classinput)
+
+for result in anyelementresults:
+	anyelementresults.append(result.getText())
